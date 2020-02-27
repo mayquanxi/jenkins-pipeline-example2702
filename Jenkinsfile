@@ -1,15 +1,26 @@
 pipeline {
-    agent any
+	agent any
 
-    stages {
-        stage('Test') {
+	stages {
+		stage('Buiding') {
+			steps {
+				echo 'Buiding'
+			}
+		}
+		stage('Deploy') {
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-                sh 'make check || true' 
-                junit '**/target/*.xml' 
+                sh 'make publish'
             }
         }
-    }
+		stage('Deploying') {
+			steps {
+				echo 'Deploying'
+			}
+		}
+	}
 }
