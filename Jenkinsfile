@@ -1,10 +1,17 @@
 pipeline {
 	agent any
+	environment {
+		MY_NAME='NGUYEN KHAC MANH'
+	}
 
 	stages {
 		stage('Buiding') {
+			environment {
+				LAST_NAME='MANH'
+			}
 			steps {
-				echo 'Buiding'
+				echo '$(MY_NAME)'
+				echo '$(LAST_NAME)'
 			}
 		}
 		stage('Example') {
