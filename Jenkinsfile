@@ -10,8 +10,8 @@ pipeline {
 				LAST_NAME='MANH'
 			}
 			steps {
-				echo '$(MY_NAME)'
-				echo '$(LAST_NAME)'
+				echo '${MY_NAME}'
+				echo ' hello ${LAST_NAME}'
 			}
 		}
 		stage('Example') {
